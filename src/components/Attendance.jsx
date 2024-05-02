@@ -40,13 +40,13 @@ function Attendance() {
 
   return (
     <div className="container mx-auto">
-      <div className="my-4 flex items-center justify-between">
-        <h1 className="text-3xl font-semibold text-gray-800">Attendance List</h1>
-        <div className="flex items-center">
+      <div className="my-4">
+        <h1 className="text-3xl font-semibold text-gray-800 text-center">Attendance List</h1>
+        <div className="flex items-center justify-between mt-4">
           <input
             type="text"
             placeholder="Search by name"
-            className="border border-gray-300 p-2 rounded-md mr-2"
+            className="border border-gray-300 p-2 rounded-md w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -60,43 +60,37 @@ function Attendance() {
           >
             {showOutsideCampus ? "Show All" : "Show Outside Campus"}
           </button>
-          {/* Button to navigate to the role decision page */}
-          <Link to="/">
-            <button className="ml-2 py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600">
-              Logout
-            </button>
-          </Link>
         </div>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full table-auto min-w-max divide-y divide-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 ID
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Name
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Gate No.
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 In Time
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Out Time
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Date
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Phone Number
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Address
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">
                 Status
               </th>
             </tr>
@@ -104,26 +98,20 @@ function Attendance() {
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredData.map((user) => (
               <tr key={user["Student ID"]} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">{user["Student ID"]}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {user["First Name"]} {user["Last Name"]}
+                <td className="px-4 py-3 whitespace-nowrap">{user["Student ID"]}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{user["First Name"]} {user["Last Name"]}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{user["Gate Number"]}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{formatTime(user["Time In"])}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{user["Time Out "] ? formatTime(user["Time Out "]) : "-"}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{formatDate(user["Date"])}</td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <a href={`tel:+91${user["Phone Number"]}`}>{user["Phone Number"]}</a>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{user["Gate Number"]}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{formatTime(user["Time In"])}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {user["Time Out "] ? formatTime(user["Time Out "]) : "-"}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{formatDate(user["Date"])}</td>
-                <td className="px-6 py-4 whitespace-nowrap"><a href={`tel:+91${user["Phone Number"]}`}>{user["Phone Number"]}</a></td>
-                <td className="px-6 py-4 whitespace-nowrap">{user["Address"]}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span
-                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      user["Time Out "]
-                        ? "bg-green-100 text-green-800"
-                        : "bg-red-100 text-red-800"
-                    }`}
-                  >
+                <td className="px-4 py-3 whitespace-nowrap">{user["Address"]}</td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                    user["Time Out "] ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                  }`}>
                     {user["Time Out "] ? "Inside Campus" : "Outside Campus"}
                   </span>
                 </td>
@@ -131,6 +119,14 @@ function Attendance() {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* Button to navigate to the role decision page */}
+      <div className="mt-4 text-center">
+        <Link to="/">
+          <button className="py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600">
+            Logout
+          </button>
+        </Link>
       </div>
     </div>
   );
