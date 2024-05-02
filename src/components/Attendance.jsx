@@ -51,7 +51,7 @@ function Attendance() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
-            className={`py-2 px-4 rounded-md ${
+            className={`py-2 mx-2 px-4 rounded-md ${
               showOutsideCampus
                 ? "bg-pink-400 text-white hover:bg-pink-600"
                 : "bg-blue-500 text-white hover:bg-blue-600"

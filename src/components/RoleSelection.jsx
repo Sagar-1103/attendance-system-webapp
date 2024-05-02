@@ -19,12 +19,12 @@ function RoleSelection() {
               Admin
             </button>
           </Link>
-          <button
-            onClick={() => handleRoleSelect("User")}
-            className="w-full px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700 transition-colors"
-          >
-            User
-          </button>
+          <Link to={"/userlogin"}>
+            <button className="w-full mb-4 px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700 transition-colors">
+              User
+            </button>
+          </Link>
+  
         </div>
       </div>
     </div>
