@@ -9,13 +9,11 @@ function RoleSelection() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <div className="p-8 bg-white w-[25%] h-80 shadow-md hover:sh-bg-gray-50 rounded">
-        <h2 className="mb-4 text-4xl text-center font-bold">
-          Select Your Role
-        </h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="p-8 bg-white w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl h-auto shadow-md hover:shadow-lg rounded-lg">
+        <h2 className="mb-4 text-4xl text-center font-bold">Select Your Role</h2>
         <hr />
-        <div className="pt-14">
+        <div className="pt-8">
           <Link to={"/adminlogin"}>
             <button className="w-full mb-4 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 transition-colors">
               Admin
