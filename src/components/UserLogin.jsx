@@ -14,7 +14,7 @@ function UserLogin() {
     fetcher
   );
 
-  const handleLogin = (event) => {
+  const handleLogin = async(event) => {
     event.preventDefault();
     if (!studentId || !firstName) {
       alert("Please enter both Student ID and First Name.");
@@ -22,11 +22,11 @@ function UserLogin() {
     }
 
     // Find user by first name and student ID
-    const user = userData.find((user) => user["First Name"].toLowerCase() === firstName.toLowerCase());
+    const user = await userData.find((user) => user["First Name"].toLowerCase() === firstName.toLowerCase());
 
     if (user) {
       // Navigate to user page with user data
-      navigate("/userpage", { state: { user } });
+      navigate(`/user/${user["Student ID"]}.${user["First Name"]}`);
     } else {
       alert("User not found. Please check your Student ID and First Name.");
     }

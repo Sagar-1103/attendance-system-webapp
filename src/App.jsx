@@ -18,7 +18,7 @@ function App() {
         <Route path="/adminlogin" element={<AdminLogin/>} />
         <Route path="/attendance" element={<Attendance/>} />
         <Route path="/userlogin" element={<UserLogin/>} />
-        <Route path="/userpage" element={<UserPage/>} />
+        <Route path="/user/:userId" element={<UserPage/>} />
       </Routes>
     </div>
     </BrowserRouter>
