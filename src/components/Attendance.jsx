@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -52,13 +53,19 @@ function Attendance() {
           <button
             className={`py-2 px-4 rounded-md ${
               showOutsideCampus
-                ? "bg-green-400 text-white hover:bg-green-600"
+                ? "bg-pink-400 text-white hover:bg-pink-600"
                 : "bg-blue-500 text-white hover:bg-blue-600"
             }`}
             onClick={() => setShowOutsideCampus(!showOutsideCampus)}
           >
             {showOutsideCampus ? "Show All" : "Show Outside Campus"}
           </button>
+          {/* Button to navigate to the role decision page */}
+          <Link to="/">
+            <button className="ml-2 py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600">
+              Logout
+            </button>
+          </Link>
         </div>
       </div>
       <div className="overflow-x-auto">
@@ -107,7 +114,7 @@ function Attendance() {
                   {user["Time Out "] ? formatTime(user["Time Out "]) : "-"}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">{formatDate(user["Date"])}</td>
-                <td className="px-6 py-4 whitespace-nowrap">+91 {user["Phone Number"]}</td>
+                <td className="px-6 py-4 whitespace-nowrap"><a href={`tel:+91${user["Phone Number"]}`}>{user["Phone Number"]}</a></td>
                 <td className="px-6 py-4 whitespace-nowrap">{user["Address"]}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
